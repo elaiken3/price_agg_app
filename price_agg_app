@@ -1,7 +1,12 @@
 
 from googleapiclient.discovery import build
+import pandas as pd
+
+#Credential Information
 api_key = "AIzaSyCZeHihigSFyK-vB3bt1hjMps-alSdqbD0"
 cse_id = "d65e76c1b401c4776"
+
+#Google Query Function
 def google_query(query, api_key, cse_id, **kwargs):
     query_service = build("customsearch",
                           "v1",
@@ -11,16 +16,32 @@ def google_query(query, api_key, cse_id, **kwargs):
                                              cx=cse_id,  # CSE ID
                                              **kwargs
                                              ).execute()
+
     return query_results['items']
-my_results_list = []
-my_results = google_query("Joe Biden",
+#End of Function
+
+
+#Instantiating lists to hold query elements
+my_results_list_link = []
+my_results_list_title=[]
+my_results_list_snippet=[]
+
+
+#External input for query
+query_name = str(input("Enter Search Name: "))
+
+
+#Calling Google Query Function with external input for query
+my_results = google_query(query_name,
                           api_key,
                           cse_id,
                           num = 10
                           )
-for result in my_results:
-    my_results_list.append(result['title'])
-    my_results_list.append(result['link'])
-    my_results_list.append(result['snippet'])
 
-    print(result['title'],result['link'], result['snippet'])
+#Looping through lists and printing results
+for result in my_results:
+    my_results_list_title.append(result['title'])
+    my_results_list_link.append(result['link'])
+    my_results_list_snippet.append(result['snippet'])
+
+    print(result['title'],result['link'],result['snippet'])
