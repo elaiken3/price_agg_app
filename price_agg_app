@@ -1,9 +1,5 @@
-# def price_agg_app(file):
-#     import pandas as pd
-#     import from googleapiclient.discovery import build
-#
-#     pass
-import from googleapiclient.discovery import build
+
+from googleapiclient.discovery import build
 api_key = "AIzaSyCZeHihigSFyK-vB3bt1hjMps-alSdqbD0"
 cse_id = "d65e76c1b401c4776"
 def google_query(query, api_key, cse_id, **kwargs):
@@ -17,11 +13,14 @@ def google_query(query, api_key, cse_id, **kwargs):
                                              ).execute()
     return query_results['items']
 my_results_list = []
-my_results = google_query("apple iphone news 2019",
+my_results = google_query("Joe Biden",
                           api_key,
                           cse_id,
                           num = 10
                           )
-# for result in my_results:
-#     my_results_list.append(result['link'])
-#     print(result['link'])
+for result in my_results:
+    my_results_list.append(result['title'])
+    my_results_list.append(result['link'])
+    my_results_list.append(result['snippet'])
+
+    print(result['title'],result['link'], result['snippet'])
