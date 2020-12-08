@@ -4,8 +4,8 @@
 #
 #     pass
 import from googleapiclient.discovery import build
-api_key = "my-secret-api-key"
-cse_id = "my-secret-custom-search-id "
+api_key = "AIzaSyCZeHihigSFyK-vB3bt1hjMps-alSdqbD0"
+cse_id = "d65e76c1b401c4776"
 def google_query(query, api_key, cse_id, **kwargs):
     query_service = build("customsearch",
                           "v1",
@@ -22,6 +22,6 @@ my_results = google_query("apple iphone news 2019",
                           cse_id,
                           num = 10
                           )
-for result in my_results:
-    my_results_list.append(result['link'])
-    print(result['link'])
+# for result in my_results:
+#     my_results_list.append(result['link'])
+#     print(result['link'])
