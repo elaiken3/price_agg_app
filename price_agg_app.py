@@ -3,15 +3,17 @@ from googleapiclient.discovery import build
 import pandas as pd
 import config
 
+api_key = config.api_key
+cse_id = config.cse_id
 
 #Google Query Function
 def google_query(query, api_key, cse_id, **kwargs):
     query_service = build("customsearch",
                           "v1",
-                          developerKey=config.api_key
+                          developerKey=api_key
                           )
     query_results = query_service.cse().list(q=query,    # Query
-                                             cx=config.cse_id,  # CSE ID
+                                             cx=cse_id,  # CSE ID
                                              **kwargs
                                              ).execute()
 
